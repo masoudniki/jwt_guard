@@ -1,0 +1,40 @@
+{
+  "name": "masoudniki/jwt-guard",
+  "type": "library",
+  "description": "custom laravel authentication guard for implementing jwt in application",
+  "keywords": ["jwt-guard","token-base-authentication"],
+  "homepage": "https://github.com/masoudniki",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "masoudniki",
+      "email": "masoud.niki79@gmail.com",
+      "homepage": "https://github.com/masoudniki",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MN\\JwtAuth\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.4|^8.0",
+    "ext-json": "*",
+    "laravel/laravel": "^7.0",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "require-dev": {
+    "larapack/dd": "^1.1",
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^0.12.93"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MN\\JwtAuth\\Providers\\LaravelKafkaServiceProvider"
+      ]
+    }
+  }
+
+}
