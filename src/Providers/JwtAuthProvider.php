@@ -10,7 +10,9 @@ class JwtAuthProvider extends ServiceProvider
 {
     use CreatesUserProviders;
     public function boot(){
+        $this->loadConfig();
         $this->registerJwtGuard();
+        $this->registerRoutes();
     }
 
     /**
