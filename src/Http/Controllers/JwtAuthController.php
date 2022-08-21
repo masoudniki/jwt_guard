@@ -12,6 +12,10 @@ use ReallySimpleJWT\Token;
 class JwtAuthController extends Controller
 {
     use CreatesUserProviders;
+    public $app;
+    public function __construct(){
+        $this->app=app();
+    }
     public function generateToken(GenerateTokenRequest $request){
         $provider=$this->createUserProvider('users');
         $user=$provider->retrieveByCredentials($request->validated());
