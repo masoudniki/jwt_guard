@@ -1,12 +1,16 @@
 <?php
 namespace MN\JwtAuth\Guard;
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
+use MN\JwtAuth\Traits\WorkWithKey;
 use ReallySimpleJWT\Token;
 
 class JwtGuard implements \Illuminate\Contracts\Auth\Guard
 {
+    use WorkWithKey;
     private Authenticatable $user;
     private UserProvider $provider;
     public function __construct(UserProvider $provider){
@@ -14,8 +18,20 @@ class JwtGuard implements \Illuminate\Contracts\Auth\Guard
     }
     public function check()
     {
-        $token=$this->getToken();
-        return $token && Token::validate($token,config('jwt_auth.secret'));
+        if(isset($this->user)){
+            return true;
+        }
+        $jwtToken=$this->getToken();
+        if(!isset($jwtToken)){
+            return false;
+        }
+        try{
+            $decodedToken=JWT::decode($jwtToken,new Key($this->parseKey(config('jwt_auth.secret')),'HS256'));
+            return true;
+        }catch (\Exception $exception){
+            return false;
+        }
+
     }
 
     public function guest()

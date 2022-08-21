@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use MN\JwtAuth\Http\Requests\GenerateTokenRequest;
+use MN\JwtAuth\Traits\WorkWithKey;
 
 class JwtAuthController extends Controller
 {
-    use CreatesUserProviders;
+    use CreatesUserProviders,WorkWithKey;
     public $app;
     public function __construct(){
         $this->app=app();
@@ -30,11 +31,5 @@ class JwtAuthController extends Controller
         return response()->json([
             'token'=>$token
         ]);
-    }
-    private function parseKey($key){
-        if (Str::startsWith($key, $prefix = 'base64:')) {
-            $key = base64_decode(Str::after($key, $prefix));
-        }
-        return $key;
     }
 }
