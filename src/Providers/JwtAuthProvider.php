@@ -20,7 +20,8 @@ class JwtAuthProvider extends ServiceProvider
      */
     private function registerJwtGuard(): void
     {
-        Auth::extend("jwt", function () {return new JwtGuard($this->createUserProvider('users'));
+        Auth::extend("jwt", function () {
+            return new JwtGuard($this->createUserProvider('users'));
         });
     }
     private function registerRoutes()
