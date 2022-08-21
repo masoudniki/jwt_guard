@@ -18,7 +18,17 @@
         | by default we use the same key that laravel use but if you want you can
         | change it
         */
-        'secret'=>env("APP_KEY")
+        'secret'=>env("APP_KEY"),
+        /*
+        | header name
+        |
+        | the name of the header which client send the token inside it
+        |
+        */
+        'header_name'=>env("JWT_AUTH_HEADER_NAME",'Authentication')
+
+
+
 
 
 

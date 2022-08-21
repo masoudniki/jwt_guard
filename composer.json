@@ -22,7 +22,8 @@
     "php": "^7.4|^8.0",
     "ext-json": "*",
     "laravel/laravel": "^7.0",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "rbdwllr/reallysimplejwt": "^5.0"
   },
   "require-dev": {
     "larapack/dd": "^1.1",
