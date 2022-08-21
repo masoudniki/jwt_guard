@@ -33,7 +33,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "MN\\JwtAuth\\Providers\\LaravelKafkaServiceProvider"
+        "MN\\JwtAuth\\Providers\\JwtAuthProvider"
       ]
     }
   }
