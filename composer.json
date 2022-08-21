@@ -23,7 +23,7 @@
     "ext-json": "*",
     "laravel/framework": ">=7",
     "guzzlehttp/guzzle": "^7.0",
-    "rbdwllr/reallysimplejwt": "^5.0"
+    "firebase/php-jwt": "^6.3"
   },
   "require-dev": {
     "larapack/dd": "^1.1",
