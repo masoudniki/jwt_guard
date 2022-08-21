@@ -26,7 +26,7 @@ class JwtGuard implements \Illuminate\Contracts\Auth\Guard
             return false;
         }
         try{
-            $decodedToken=JWT::decode($jwtToken,new Key($this->parseKey(config('jwt_auth.secret')),'HS256'));
+            $this->setUserFromToken();
             return true;
         }catch (\Exception $exception){
             return false;
@@ -44,8 +44,7 @@ class JwtGuard implements \Illuminate\Contracts\Auth\Guard
         if(isset($this->user)){
             return $this->user;
         }
-        $payload=Token::getPayload($this->getToken());
-        $this->user=$this->provider->retrieveById($payload['auth_identifier']);
+        $this->setUserFromToken();
         return $this->user;
     }
     public function id()
@@ -77,7 +76,17 @@ class JwtGuard implements \Illuminate\Contracts\Auth\Guard
         }
         return false;
     }
-    public function getToken(){
+    private function getToken(){
         return request()->header(config('jwt_auth.header_name'));
+    }
+
+    /**
+     * @return void
+     */
+    private function setUserFromToken(): void
+    {
+        $jwtToken = $this->getToken();
+        $payload = JWT::decode($jwtToken, new Key($this->parseKey(config('jwt_auth.secret')), 'HS256'));
+        $this->user = $this->provider->retrieveById($payload->auth_identifier);
     }
 }

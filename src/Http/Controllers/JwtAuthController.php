@@ -24,7 +24,7 @@ class JwtAuthController extends Controller
         $payload=[
             'iat'=>Carbon::create()->timestamp,
             'auth_identifier'=>$user->getAuthIdentifier(),
-            'exp'=>Carbon::create()->addDays(30)->timestamp
+            'nbf'=>Carbon::create()->addDays(30)->timestamp
         ];
         $secret=$this->parseKey(config('jwt_auth.secret'));
         $token=JWT::encode($payload,$secret,'HS256');
