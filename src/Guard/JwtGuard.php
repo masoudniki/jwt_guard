@@ -71,6 +71,12 @@ class JwtGuard implements \Illuminate\Contracts\Auth\Guard
     {
         $this->user=$user;
     }
+    public function hasUser(){
+        if(isset($this->user)){
+            return true;
+        }
+        return false;
+    }
     public function getToken(){
         return request()->header(config('jwt_auth.header_name'));
     }
