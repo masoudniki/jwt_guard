@@ -21,7 +21,7 @@
   "require": {
     "php": "^7.4|^8.0",
     "ext-json": "*",
-    "laravel/laravel": "^7.0|^8.0|^9.0",
+    "laravel/framework": ">=7",
     "guzzlehttp/guzzle": "^7.0",
     "rbdwllr/reallysimplejwt": "^5.0"
   },
