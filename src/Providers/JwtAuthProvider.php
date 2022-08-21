@@ -27,10 +27,10 @@ class JwtAuthProvider extends ServiceProvider
     private function registerRoutes()
     {
         Route::namespace('MN\JwtAuth\Http\Controllers')
-            ->group(dirname(__DIR__) . DIRECTORY_SEPARATOR . "/routes/routes.php");
+            ->group(dirname(__DIR__,2) . DIRECTORY_SEPARATOR . "/routes/routes.php");
     }
     private function loadConfig(){
-        $this->mergeConfigFrom(dirname(__DIR__).DIRECTORY_SEPARATOR."config/jwt_auth.php","jwt_auth");
-        $this->mergeConfigFrom(dirname(__DIR__) . DIRECTORY_SEPARATOR."config/jwt_auth.php",'jwt_auth');
+        $this->mergeConfigFrom(dirname(__DIR__,2).DIRECTORY_SEPARATOR."config/jwt_auth.php","jwt_auth");
+        $this->mergeConfigFrom(dirname(__DIR__,2) . DIRECTORY_SEPARATOR."config/jwt_auth.php",'jwt_auth');
     }
 }
